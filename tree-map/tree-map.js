@@ -28,10 +28,33 @@
   *  root1.value // still 1
   */
 
+
 var Tree = function(value) {
-  this.value = value;
-  this.children = [];
+  var tree ={}
+  tree.value = value;
+  tree.children = [];
+
+
+  tree.addChild = function(value) {
+    tree.children.push(new Tree(value));
+  };
+
+  tree.map = function(f){
+    function looper(obj){
+    obj.value = f(obj.value);
+    console.log(obj[children])
+    if(obj[children]!== undefined){
+    obj[children].forEach(function(element){
+      f(element.value)
+      })
+    }
+    }
+    return looper(tree)
+  }
+
+  return tree
 };
+
 
 
 
